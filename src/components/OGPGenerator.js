@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 
-const OGPGenerator = ({ setOgpUrl }) => {
+function OGPGenerator({ setOgpUrl }) {
   const [text, setText] = useState("");
 
   const handleGenerateOGP = async () => {
     try {
+      // デプロイしたバックエンドURLを設定
       const response = await fetch(
-        `/api/generate-ogp?text=${encodeURIComponent(text)}`
+        `https://ogp-generator-navy.vercel.app/api/generate-ogp?text=${encodeURIComponent(
+          text
+        )}`
       );
       if (response.ok) {
         const { imageUrl } = await response.json();
-        setOgpUrl(imageUrl); // 親コンポーネントにOGP URLを渡す
+        setOgpUrl(imageUrl);
       } else {
         console.error("OGP画像の生成に失敗しました");
       }
@@ -20,22 +23,22 @@ const OGPGenerator = ({ setOgpUrl }) => {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="ogp-generator">
       <input
         type="text"
         value={text}
         onChange={(e) => setText(e.target.value)}
-        placeholder="OGPに表示するテキストを入力"
-        className="border rounded px-4 py-2 mb-4"
+        placeholder="OGPに表示するテキスト"
+        className="border p-2 rounded"
       />
       <button
         onClick={handleGenerateOGP}
-        className="bg-blue-500 text-white px-4 py-2 mt-4 rounded"
+        className="bg-blue-500 text-white p-2 rounded ml-2"
       >
         OGP画像を生成
       </button>
     </div>
   );
-};
+}
 
 export default OGPGenerator;

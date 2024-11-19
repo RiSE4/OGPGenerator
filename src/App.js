@@ -21,6 +21,13 @@ function App() {
           >
             {ogpUrl}
           </a>
+          <div>
+            <img
+              src={ogpUrl}
+              alt="OGP Preview"
+              className="mt-4 border rounded"
+            />
+          </div>
         </div>
       )}
     </div>

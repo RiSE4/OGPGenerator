@@ -1,23 +1,18 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 
-const OGPHelmet = ({ ogpUrl }) => {
+function OGPHelmet({ ogpUrl }) {
   return (
     <Helmet>
-      <meta property="og:title" content="OGP画像ジェネレーター" />
+      <meta property="og:image" content={ogpUrl} />
+      <meta property="og:title" content="OGP Generator" />
       <meta
         property="og:description"
-        content="好きなテキストを入力してOGP画像を生成できます。"
-      />
-      <meta property="og:image" content={ogpUrl} />
-      <meta
-        property="og:url"
-        content="https://your-vercel-domain.vercel.app/"
+        content="動的に生成されたOGP画像を共有しよう！"
       />
       <meta property="og:type" content="website" />
-      <meta name="twitter:card" content="summary_large_image" />
     </Helmet>
   );
-};
+}
 
 export default OGPHelmet;
